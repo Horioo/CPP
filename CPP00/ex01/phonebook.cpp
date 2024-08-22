@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:43:19 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/08/22 21:16:51 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:11:05 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 PhoneBook::PhoneBook(void){
 	c_index = 0;
+	max_index = 0;
 	std::cout << "PhoneBook ready to Register" << std::endl;
 }
 
@@ -47,24 +48,65 @@ void PhoneBook::AddContact(){
 	std::cin >> value;
 	this->contact[this->c_index].SetDS(value);
 	this->c_index++;
+	if(this->max_index != 8)
+		this->max_index++;
+}
+
+void PrintColumn(const std::string &text, int width = 10) {
+    if((int)text.length() > width)
+		std::cout << std::setw(width) << text.substr(0, width - 1) + "." << " |";
+	else
+		std::cout << std::setw(width) << text << " |";
+}
+
+void PhoneBook::PrintList(int i){
+	PrintColumn(this->contact[i].GetFName());
+	PrintColumn(this->contact[i].GetLName());
+    PrintColumn(this->contact[i].GetNickname());
+}
+
+void PhoneBook::PrintInfo(int i){
+	std::cout << "First Name: " << this->contact[i].GetFName() << std::endl;
+	std::cout << "Last Name: " << this->contact[i].GetLName() << std::endl;
+	std::cout << "NickName: " << this->contact[i].GetNickname() << std::endl;
+	std::cout << "Phone Number " << this->contact[i].GetPhoneNumber() << std::endl;
+	std::cout << "Dark Secret " << this->contact[i].GetDS() << std::endl;
 }
 
 void PhoneBook::SearchContact(){
 	
 	int display;
-	
-	std::cout << std::right << "| " << std::setw(10) << "Index |" << std::setw(10) << "First Name | " << std::setw(10) << "Last Name |" << std::setw(10) << "NickName" << " |" << std::endl;
-	for(int i = 0; i <= this->c_index - 1; i++)
-		std::cout << std::right << "|" << std::setw(10) << i << "|" << std::setw(10) << this->contact[i].GetFName() <<  " |" << std::setw(10) << this->contact[i].GetLName() << " |" << std::setw(10) << this->contact[i].GetNickname() << " |" << std::endl;
-	
+		/*Escreve os Cabeçalhos*/
+	std::cout << std::right << "| ";
+	PrintColumn("Index");
+	PrintColumn("First Name");
+    PrintColumn("Last Name");
+    PrintColumn("NickName");
+	std::cout << std::endl;
+	/*Escreve a lista com parametros reduzidos*/
+	for(int i = 0; i <= this->max_index - 1; i++){
+		std::cout << std::right << "| "
+		<< std::setw(10) << i << " |";
+		PrintList(i);
+		std::cout << std::endl;
+	}
+	/*Pede o numero do index e dá display a informação toda*/
 	std::cout << "Index Number to Display" << std::endl;
 	std::cin >> display;
-	if(display >= c_index)
-	{
-		std::cout << "Wrong Index Dumb*** can't you see the monitor??" << std::endl;
-		return ;
+	/*Verifica se não estão a inserir algo que dê conflicto com o tipo da variavel*/
+	if (std::cin.fail()) {
+            std::cin.clear();
+			std::cin.ignore(10000, '\n');
+            std::cout << "Entrada inválida. Por favor, insira um número válido." << std::endl;
+    }
+	else {
+		if(display >= c_index)
+		{
+			std::cout << "Wrong Index Dumb*** can't you see your own Screen??" << std::endl;
+			return ;
+		}
+		PrintInfo(display);
 	}
-	std::cout << std::right << "|" << std::setw(10) << display << "|" << std::setw(10) << this->contact[display].GetFName() <<  " |" << std::setw(10) << this->contact[display].GetLName() << " |" << std::setw(10) << this->contact[display].GetNickname() << " |" << std::endl;
 }
 
 void PhoneBook::ExitProgram(){
