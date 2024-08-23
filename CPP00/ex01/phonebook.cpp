@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:43:19 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/08/22 23:11:05 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:23:02 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void PhoneBook::AddContact(){
 }
 
 void PrintColumn(const std::string &text, int width = 10) {
-    if((int)text.length() > width)
+    if((int)text.length() >= width)
 		std::cout << std::setw(width) << text.substr(0, width - 1) + "." << " |";
 	else
 		std::cout << std::setw(width) << text << " |";
@@ -69,8 +69,8 @@ void PhoneBook::PrintInfo(int i){
 	std::cout << "First Name: " << this->contact[i].GetFName() << std::endl;
 	std::cout << "Last Name: " << this->contact[i].GetLName() << std::endl;
 	std::cout << "NickName: " << this->contact[i].GetNickname() << std::endl;
-	std::cout << "Phone Number " << this->contact[i].GetPhoneNumber() << std::endl;
-	std::cout << "Dark Secret " << this->contact[i].GetDS() << std::endl;
+	std::cout << "Phone Number: " << this->contact[i].GetPhoneNumber() << std::endl;
+	std::cout << "Dark Secret: " << this->contact[i].GetDS() << std::endl;
 }
 
 void PhoneBook::SearchContact(){
@@ -94,7 +94,7 @@ void PhoneBook::SearchContact(){
 	std::cout << "Index Number to Display" << std::endl;
 	std::cin >> display;
 	/*Verifica se não estão a inserir algo que dê conflicto com o tipo da variavel*/
-	if (std::cin.fail()) {
+	if (std::cin.fail() || display < 0) {
             std::cin.clear();
 			std::cin.ignore(10000, '\n');
             std::cout << "Entrada inválida. Por favor, insira um número válido." << std::endl;
