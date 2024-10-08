@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 17:07:05 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/08 10:11:27 by ajorge-p         ###   ########.fr       */
+/*   Created: 2024/10/08 09:37:20 by ajorge-p          #+#    #+#             */
+/*   Updated: 2024/10/08 11:25:54 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
-int main(){
+#include <iostream>
+#include "Weapon.hpp"
 
-	int i;
-	int nZombies = 100;
-	Zombie* Z = zombieHorde(nZombies, "Geremias");
+// Usar um pointer na Weapon permite 
+// que se possa usar o Nulo para o caso de nao ter arma
 
-	for(i = 0; i < nZombies; i++)
-		Z[i].announce();
-	delete[] Z;
-}
+class HumanB {
+
+	public:
+	HumanB(std::string name);
+	~HumanB(void);
+	void attack(void);
+	void setWeapon(Weapon &weapon);
+	
+	private:
+	Weapon* weapon;
+	std::string name;
+};
+
+#endif
