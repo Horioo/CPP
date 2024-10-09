@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:59:14 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/09 12:26:31 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:24:18 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,14 @@ int main(int argc, char** argv)
 			while(getline(file, buffer, '\0'))
 			{
 				found = buffer.find(tmp, found);
-				std::cout << found << std::endl;
 				while(found != std::string::npos)
 				{
-					buffer.append(tmp2, found, tmp2.length());
+					buffer.erase(found, tmp.length());
+					buffer.insert(found, tmp2);
 					found = buffer.find(tmp, found + tmp2.length());
-					std::cout << found << std::endl;
 				}
-				std::cout << buffer << std::endl;
+				replaceFile << buffer;
 			}
-				
 		}
 		replaceFile.close();
 		file.close();
