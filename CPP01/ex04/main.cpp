@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:59:14 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/08 13:07:25 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:26:31 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ FileName.open(nomedoficheiro, modo)
 Ver(https://www.mygreatlearning.com/blog/file-handling-in-cpp/#GettingStarted)
 
 
+Abrir Ficheiros
+Copiar o conteudo do ficheiro para um buffer
+Procurar str1 no buffer e trocar por str2
+Mover a "agulha" para o ponto depois do str2 (found + 1)
 
-Swap:
-std::string buyer ("money");
-std::string seller ("goods");
 
-buyer.swap(seller)
+Erase e insert - usar estes para fazer a troca das strings
 
 Find:
 str.find("String to Find");
@@ -40,28 +41,48 @@ str.find("String to Find");
 
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 int main(int argc, char** argv)
 {
 
 	if(argc == 4)
 	{
-		fstream file;
-		file.open(argv[1], ios::in);
+		std::fstream file;
+		std::fstream replaceFile;
+		std::string newFileName = argv[1];
+		std::string tmp = argv[2];
+		std::string tmp2 = argv[3];
+		size_t found = 0;
+		file.open(argv[1], std::ios::in);
 		if(!file)
-			cout << "File doesn't exist" << endl;
+			std::cout << "File doesn't exist" << std::endl;
 		else
 		{
-			ifstream inFile(argv[1]);
-			string x;
-			while(inFile >> x)
-				cout << x << " ";
+			std::string buffer;
+			newFileName.append(".replace");
+			//Usar o c.str() para converter o string para char *
+			replaceFile.open(newFileName.c_str(),std::ios::out);
+			if(!replaceFile)
+				std::cerr << "Error opening File" << newFileName << std::endl;
+			while(getline(file, buffer, '\0'))
+			{
+				found = buffer.find(tmp, found);
+				std::cout << found << std::endl;
+				while(found != std::string::npos)
+				{
+					buffer.append(tmp2, found, tmp2.length());
+					found = buffer.find(tmp, found + tmp2.length());
+					std::cout << found << std::endl;
+				}
+				std::cout << buffer << std::endl;
+			}
+				
 		}
+		replaceFile.close();
 		file.close();
 	}
 	else{
-		cout << "Numero de Argumentos invalidos" << endl;
+		std::cout << "Invalid Number of Arguments" << std::endl;
 	}
 }
 
