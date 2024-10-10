@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:54:21 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/09 17:57:50 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:24:43 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 class Harl {
 	
 	public:
+	Harl();
+	~Harl();
+	std::string levels[4];
+	void (Harl::*func[4])(void);
 	void complain(std::string level);
-
+	
 	private:
 	void debug(void);
 	void info(void);

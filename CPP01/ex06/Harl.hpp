@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 09:29:55 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/10 10:03:24 by ajorge-p         ###   ########.fr       */
+/*   Created: 2024/10/09 17:54:21 by ajorge-p          #+#    #+#             */
+/*   Updated: 2024/10/10 10:55:01 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
+#include <iostream>
 
-//Tests: Debug/Error/Warning/Info - Any other type that doesnt exist
+class Harl {
+	
+	public:
+	Harl();
+	~Harl();
+	std::string levels[4];
+	void (Harl::*func[4])(void);
+	void complain(int i);
+	int assignNumber(std::string arg);
+	
+	private:
+	void debug(void);
+	void info(void);
+	void warning(void);
+	void error(void);
+};
 
-int main(int argc, char **argv)
-{
-	Harl harl;
-	if(argc < 2)
-		return 1;
-	std::cout << std::endl;
-	for(int i = 1; i < argc; i++)
-		harl.complain(argv[i]);	
-}
+#endif

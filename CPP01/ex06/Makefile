@@ -1,4 +1,4 @@
-NAME = Harl
+NAME = harlFilter
 
 CC = g++ -Wall -Werror -Wextra -std=c++98
 RM = rm -f

@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:57:58 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/10 09:59:40 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:56:31 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 Harl::Harl(){
 	
-	levels[0] = "debug";
-	levels[1] = "info";
-	levels[2] = "warning";
-	levels[3] = "error";
+	levels[0] = "DEBUG";
+	levels[1] = "INFO";
+	levels[2] = "WARNING";
+	levels[3] = "ERROR";
 
 	func[0] = &Harl::debug;
 	func[1] = &Harl::info;
@@ -46,10 +46,21 @@ void Harl::error(void){
 	std::cout << "Error: Vigishu!" << std::endl << std::endl;	
 }
 
-void Harl::complain(std::string level){
-	for(int i = 0; i < 4 ;i++)
-	{
-		if(this->levels[i] == level)
-			(this->*func[i])();
+void Harl::complain(int i){
+	for(int j = i ; j < 4 ; j++)
+		(this->*func[j])();
 	}
+
+
+int Harl::assignNumber(std::string arg)
+{
+	if(arg.compare("DEBUG") == 0)
+		return 0;
+	else if(arg.compare("INFO") == 0)
+		return 1;
+	else if(arg.compare("WARNING") == 0)
+		return 2;
+	else if(arg.compare("ERROR") == 0)
+		return 3;
+	return -1;
 }
