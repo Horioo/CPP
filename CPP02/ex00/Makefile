@@ -1,9 +1,9 @@
-NAME = Harl
+NAME = Fixed
 
 CC = c++ -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-FILES = Harl.cpp main.cpp
+FILES = main.cpp Fixed.cpp
 
 SRCS = $(FILES)
 
