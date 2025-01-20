@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:40 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/20 21:34:29 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/20 21:34:17 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ ClapTrap::ClapTrap() : hp(10), ep(10), ad(0){
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), hp(10), ep(10), ad(0){
-	std::cout << "Constructor Called" << std::endl;
+	std::cout << "ClapTrap Constructor Called" << std::endl;
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "ClapTrap Destructor Called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy){
-	std::cout << "Copy Constructor Called" << std::endl;
+	std::cout << "ClapTrap Copy Constructor Called" << std::endl;
 	*this = copy;
 }
 
