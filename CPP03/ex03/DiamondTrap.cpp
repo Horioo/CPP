@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:32:18 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/20 21:32:19 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:31:10 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &copy){
 	if(this != &copy)
 	{
 		this->name = copy.name;
-		if(this->hp > 4000000000)
-			this->hp = 0;
-		else
-			this->hp = copy.hp;
+		this->hp = copy.hp;
 		this->ep = copy.ep;
 		this->ad = copy.ad;
 	}
@@ -51,9 +48,12 @@ void DiamondTrap::attack(const std::string& target){
 }
 
 void DiamondTrap::takeDamage(unsigned int amount){
-	this->hp -= amount;
+	if(this->hp <= amount)
+		this->hp = 0;
+	else
+		this->hp -= amount;
 	this->ep--;
-	if(this->hp <= 0 || hp > 4000000000)
+	if(this->hp == 0)
 		std::cout << "DiamondTrap " << this->name << " is dead!!" << std::endl;
 	else
 		std::cout << "DiamondTrap " << this->name << " took " << amount << " damage / HP = " << this->hp << std::endl;
@@ -62,7 +62,7 @@ void DiamondTrap::takeDamage(unsigned int amount){
 void DiamondTrap::beRepaired(unsigned int amount){
 	if(this->ep > 0)
 	{
-		if(this->hp <= 0 || hp > 4000000000)
+		if(this->hp == 0)
 			std::cout << "DiamondTrap " << this->name << " is dead and cant be repaired" << std::endl;
 		else
 		{

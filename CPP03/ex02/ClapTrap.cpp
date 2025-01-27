@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:40 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/20 21:34:23 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:27:43 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &copy){
 	if(this != &copy)
 	{
 		this->name = copy.name;
-		if(this->hp > 4000000000)
-			this->hp = 0;
-		else
-			this->hp = copy.hp;
+		this->hp = copy.hp;
 		this->ep = copy.ep;
 		this->ad = copy.ad;	
 	}
@@ -54,27 +51,28 @@ void ClapTrap::attack(const std::string& target){
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
-	this->hp -= amount;
+	if(this->hp <= amount)
+		this->hp = 0;
+	else
+		this->hp -= amount;
 	this->ep--;
-	if(this->hp <= 0 || hp > 4000000000)
+	if(this->hp == 0)
 		std::cout << "ClapTrap " << this->name << " is dead!!" << std::endl;
 	else
 		std::cout << "ClapTrap " << this->name << " took " << amount << " damage / HP = " << this->hp << std::endl;
-	
 }
 
 void ClapTrap::beRepaired(unsigned int amount){
 	if(this->ep > 0)
 	{
-		if(this->hp <= 0 || hp > 4000000000)
+		if(this->hp == 0)
 			std::cout << "ClapTrap " << this->name << " is dead and cant be repaired" << std::endl;
 		else
 		{
 			std::cout << "ClapTrap " << this->name << " repaired for " << amount << " HP / HP = " << this->hp + amount << std::endl;
 			this->hp += amount;
 			this->ep--;
-		}
-			
+		}		
 	}
 	else
 		std::cout << "No Energy!!" << std::endl;

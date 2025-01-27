@@ -38,10 +38,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy){
 	if(this != &copy)
 	{
 		this->name = copy.name;
-		if(this->hp > 4000000000)
-			this->hp = 0;
-		else
-			this->hp = copy.hp;
+		this->hp = copy.hp;
 		this->ep = copy.ep;
 		this->ad = copy.ad;
 	}
@@ -61,7 +58,7 @@ void ScavTrap::attack(const std::string& target){
 void ScavTrap::guardGate(){
 	if(this->ep > 0)
 	{
-		if(this->hp <= 0 || hp > 4000000000)
+		if(this->hp == 0)
 			std::cout << "ScavTrap " << this->name << " is dead and cant enter Guard Mode" << std::endl;
 		else
 		{
@@ -78,9 +75,12 @@ void ScavTrap::showStats(){
 }
 
 void ScavTrap::takeDamage(unsigned int amount){
-	this->hp -= amount;
+	if(this->hp <= amount)
+		this->hp = 0;
+	else
+		this->hp -= amount;
 	this->ep--;
-	if(this->hp <= 0 || hp > 4000000000)
+	if(this->hp == 0)
 		std::cout << "ScavTrap " << this->name << " is dead!!" << std::endl;
 	else
 		std::cout << "ScavTrap " << this->name << " took " << amount << " damage / HP = " << this->hp << std::endl;
@@ -90,7 +90,7 @@ void ScavTrap::takeDamage(unsigned int amount){
 void ScavTrap::beRepaired(unsigned int amount){
 	if(this->ep > 0)
 	{
-		if(this->hp <= 0 || hp > 4000000000)
+		if(this->hp == 0)
 			std::cout << "ScavTrap " << this->name << " is dead and cant be repaired" << std::endl;
 		else
 		{
