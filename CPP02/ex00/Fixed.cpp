@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:30:16 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/19 17:48:30 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:50:48 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Fixed::Fixed(): fp_number(0){
 
 Fixed::Fixed(const Fixed &copy){
 	std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
+	this->fp_number = copy.getRawBits();
 }
 
 Fixed::~Fixed(){

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:59:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 22:35:04 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:58:50 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ WrongAnimal::~WrongAnimal(){
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &copy){
-	*this = copy;
+	this->type = copy.type;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &copy){

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 22:29:56 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 22:30:57 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:59:00 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ WrongCat::~WrongCat(){
 }
 
 WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal() {
-	*this = copy;
+	this->type = copy.type;
 }
 
 WrongCat &WrongCat::operator=(const WrongCat &copy){

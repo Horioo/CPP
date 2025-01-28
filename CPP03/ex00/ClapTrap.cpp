@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:40 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 21:25:33 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:47:39 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ ClapTrap::~ClapTrap(){
 
 ClapTrap::ClapTrap(const ClapTrap &copy){
 	std::cout << "Copy Constructor Called" << std::endl;
-	*this = copy;
+	this->name = copy.name;
+	this->hp = copy.hp;
+	this->ep = copy.ep;
+	this->ad = copy.ad;	
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &copy){
+	std::cout << "Copy operator Called" << std::endl;
 	if(this != &copy)
 	{
 		this->name = copy.name;

@@ -31,7 +31,10 @@ ScavTrap::~ScavTrap() {
 
 ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap() {
 	std::cout << "ScavTrap Copy Constructor Called" << std::endl;
-	*this = copy;
+	this->name = copy.name;
+	this->hp = copy.hp;
+	this->ep = copy.ep;
+	this->ad = copy.ad;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy){

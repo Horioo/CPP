@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:42 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/20 19:40:57 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:47:10 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int main(){
 
 	ClapTrap Jose("José");
 	ClapTrap Anibal("Aníbal");
-	ClapTrap Toze;
+	ClapTrap Toze("Toze");
 	ClapTrap Antonio(Jose);
 
-	Toze = Anibal;
 
 	//Testes Normais
 	Jose.attack("Anibal");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:16:40 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 21:27:03 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:52:15 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ ScavTrap::~ScavTrap() {
 
 ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap() {
 	std::cout << "ScavTrap Copy Constructor Called" << std::endl;
-	*this = copy;
+	this->name = copy.name;
+	this->hp = copy.hp;
+	this->ep = copy.ep;
+	this->ad = copy.ad;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy){

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:14:16 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 21:31:46 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:57:31 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ FragTrap::~FragTrap() {
 
 FragTrap::FragTrap(const FragTrap &copy): ClapTrap() {
 	std::cout << "FragTrap Copy Constructor Called" << std::endl;
-	*this = copy;
+	this->name = copy.name;
+	this->hp = copy.hp;
+	this->ep = copy.ep;
+	this->ad = copy.ad;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &copy){
 	if(this != &copy)
 	{
 		this->name = copy.name;
-		if(this->hp > 4000000000)
 		this->hp = copy.hp;
 		this->ep = copy.ep;
 		this->ad = copy.ad;
