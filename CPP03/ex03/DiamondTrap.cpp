@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:32:18 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 21:31:10 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:57:12 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ DiamondTrap::~DiamondTrap() {
 
 DiamondTrap::DiamondTrap(const DiamondTrap &copy) : ClapTrap(), ScavTrap(), FragTrap() {
 	std::cout << "DiamondTrap Copy Constructor Called" << std::endl;
-	*this = copy;
+	this->name = copy.name;
+	this->hp = copy.hp;
+	this->ep = copy.ep;
+	this->ad = copy.ad;
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &copy){

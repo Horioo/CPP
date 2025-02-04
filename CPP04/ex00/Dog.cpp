@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:58:48 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 22:26:21 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:58:44 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Dog::~Dog(){
 }
 
 Dog::Dog(const Dog &copy) : Animal() {
-	*this = copy;
+	this->type = copy.type;
 }
 
 Dog &Dog::operator=(const Dog &copy) {

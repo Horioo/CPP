@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:55 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 22:46:19 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:43:20 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ Animal::~Animal(){
 }
 
 Animal::Animal(const Animal &copy){
+	std::cout << "Copy Constructor" << std::endl;
 	*this = copy;
 }
 
 Animal &Animal::operator=(const Animal &copy){
+	std::cout << "Copy Operator" << std::endl;
 	this->type = copy.type;
 	return *this;
 }
