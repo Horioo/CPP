@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 08:42:32 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/08 08:52:13 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:15:39 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int main(void)
 	std::cout << std::endl;
 	
 	std::cout << "Valor da String " << str << std::endl;
-	std::cout << "Valor do Pointer para a String " << stringPTR << std::endl;
+	std::cout << "Valor do Pointer para a String " << *stringPTR << std::endl;
 	std::cout << "Valor da Referencia da String " << stringREF << std::endl;	
 }

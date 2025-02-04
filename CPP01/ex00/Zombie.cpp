@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:15:57 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/09/03 16:55:55 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:14:05 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+
+Zombie::Zombie(){
+	std::cout << "Zombie Constructor" << std::endl;
+}
+
+Zombie::~Zombie(){
+	std::cout << "Zombie " << this->name << " Destructor" << std::endl;
+}
 
 void Zombie::announce(){
 	if(this->name.empty())
