@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 17:30:16 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/28 11:51:14 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:16:05 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed() : fp_number(0){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int number) : fp_number(number << bits){
+Fixed::Fixed(const int number) : fp_number(number << this->bits){
 	std::cout << "Int constructor called" << std::endl;
 }
 
