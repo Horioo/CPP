@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 09:29:55 by ajorge-p          #+#    #+#             */
-/*   Updated: 2024/10/10 10:57:54 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:17:02 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int main(int argc, char **argv)
 			std::cout << "Gnar Noises not Found" << std::endl;
 		}
 	}
-	std::cout << "Invalid number of args" << std::endl;
+	else
+		std::cout << "Invalid number of args" << std::endl;
 }
