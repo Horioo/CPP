@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:16:40 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/28 11:52:15 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:00:16 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void ScavTrap::attack(const std::string& target){
 void ScavTrap::guardGate(){
 	if(this->ep > 0)
 	{
-		if(this->hp <= 0 || hp > 4000000000)
+		if(this->hp == 0)
 			std::cout << "ScavTrap " << this->name << " is dead and cant enter Guard Mode" << std::endl;
 		else
 		{

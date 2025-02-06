@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:42 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/20 21:31:52 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:05:02 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(){
 	//FragTrap Testing
 	
 	DiamondTrap Dia("Dia");
-	
 	/*
 		FragTrap Serena("Serena");
 		FragTrap Horio("Horio");
