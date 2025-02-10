@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:56:42 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 21:35:49 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:59:20 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ int main(){
 	Horio.beRepaired(10);
 	Horio.guardGate();
 
+	/*
 	std::cout << "Kyle Trials" << std::endl;
 	Kyle.attack("Anibal");
 	Kyle.takeDamage(5);
 	Kyle.beRepaired(1);
 	Kyle.takeDamage(11);
 	Kyle.beRepaired(1);
+	*/
 }
