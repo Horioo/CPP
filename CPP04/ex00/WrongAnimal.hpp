@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:59:53 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/27 22:43:11 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:51:39 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class WrongAnimal{
 	WrongAnimal(const WrongAnimal &copy);
 	WrongAnimal &operator=(const WrongAnimal &copy);
 	
-	virtual void makeSound() const;
+	void makeSound() const;
 	std::string getType() const;
 };
 

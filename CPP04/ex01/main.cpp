@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 22:00:11 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:01 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:51:57 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ int main()
 		else
 			animal[i] = new Cat();
 	}
-
-	const Animal* animal1;
-	const Animal* animal2 = new Animal(animal1);
-	const Animal* animal3;
-
-	animal3 = animal1;
 
 	Dog dog;
 
