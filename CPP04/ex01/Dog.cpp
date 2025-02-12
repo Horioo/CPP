@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:58:48 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/28 12:09:28 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:36:23 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ Dog::~Dog(){
 	delete (this->brain);
 }
 
-Dog::Dog(const Dog &copy) : Animal() {
+Dog::Dog(const Dog &copy) : Animal(){
 	this->type = copy.type;
+	this->brain = new Brain(*copy.brain);
 }
 
 Dog &Dog::operator=(const Dog &copy) {
-	this->type = copy.type;
+	if (this != &copy) {
+		this->type = copy.type;
+		this->brain = new Brain(*copy.brain);
+	}
 	return *this;
 }
 

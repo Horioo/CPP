@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:54:31 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/01/28 12:09:23 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:36:48 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ Cat::~Cat(){
 
 Cat::Cat(const Cat &copy) : Animal() {
 	this->type = copy.type;
+	this->brain = new Brain(*copy.brain);
 }
 
 Cat &Cat::operator=(const Cat &copy){
-	this->type = copy.type;
+	if (this != &copy) {
+		this->type = copy.type;
+		this->brain = new Brain(*copy.brain);
+	}
 	return *this;
 }
 

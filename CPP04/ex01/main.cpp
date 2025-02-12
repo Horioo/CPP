@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 22:00:11 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/02/10 16:51:57 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:37:17 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main()
 		std::ostringstream oss;
 		oss << "MailMan nº " << i << " Bark " << std::rand() % 100 << " times";
 		std::string idea = oss.str();
+		//std::string idea = "oLA";
 		dog.getBrain()->setIdea(i, idea);
 	}
 	
@@ -53,4 +54,12 @@ int main()
 		std::cout << "Animal "<< animal[i]->getType() << " " << i << " Deleted ";
 		delete(animal[i]);
 	}
+
+	Cat obj1;
+    Cat obj2 = obj1; // Agora cada objeto tem sua própria cópia
+
+    obj1.makeSound(); // "Hello"
+    obj2.makeSound(); // "Hello"
+
+	return 0;
 }
