@@ -6,12 +6,11 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 12:19:02 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/02/14 20:35:08 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:54:18 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150){
 	std::cout << "Default Constructor for Bureaucrat" << std::endl;
@@ -43,6 +42,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy){
 	return *this;
 }
 
+/*				Member Functions*/
+
 std::string Bureaucrat::getName() const{
 	return this->name;
 }
@@ -63,10 +64,19 @@ void Bureaucrat::lowerGrade(){
 	this->grade++;
 }
 
+void Bureaucrat::signForm(Form &F){
+	std::cout << this->name << " trying to Sign form " << F.getName() << std::endl; 
+	F.beSigned(*this);
+}
+
+
+/*				Operator overload*/
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj){
 	out << obj.getName() << " bureaucrat grade " << obj.getGrade() << std::endl;
 	return out;
 }
+
+/*				Exceptions Constructor and what()*/
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(){
 }
@@ -75,9 +85,9 @@ Bureaucrat::GradeTooLowException::GradeTooLowException(){
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
-	return "Grade is too High. Choose between 1(Higher) and 150(Lower)";
+	return "Bureaucrat Grade is too High.";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw(){
-	return "Grade is too Low. Choose between 1(Higher) and 150(Lower)";
+	return "Bureaucrat Grade is too Low.";
 }
