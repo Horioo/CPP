@@ -1,9 +1,9 @@
-NAME = MoreForms
+NAME = Intern
 
 CC = c++ -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-FILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+FILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 SRCS = $(FILES)
 
