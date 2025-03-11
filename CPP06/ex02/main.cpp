@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:51:29 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/07 12:56:45 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:01:06 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main()
 		identify(Kol);
 
 		std::cout << "Identify with Reference" << std::endl;
-		identify(Kol);
+		identify(*Kol);
 		
+		delete Kol;
 }

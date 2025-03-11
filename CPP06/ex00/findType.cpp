@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:46:20 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/06 13:00:59 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:02:06 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ bool isDouble(const std::string &value){
 }
 
 bool isChar(const std::string &value){
-	return(value.length() == 1 && !std::isdigit(value[0]));
+	return(!(value[0] == '\0') && value.length() == 1 && !std::isdigit(value[0]));
 }
 
 int findType(const std::string &value){
 	
 	//Special Cases
-	if(!value.compare("-inff") || !value.compare("+inff") || !value.compare("+inf") || !value.compare("-inf") || !value.compare("nan"))
+	if(value.empty())
+		return 5;
+	else if(!value.compare("-inff") || !value.compare("+inff") || !value.compare("+inf") || !value.compare("-inf") || !value.compare("nan") || !value.compare("nanf"))
 		return 0;
 	//Integer
 	else if(isInteger(value))
@@ -47,7 +49,6 @@ int findType(const std::string &value){
 	//Double
 	else if(isDouble(value))
 		return 3;
-	//char?
 	else if(isChar(value))
 		return 4;
 	else

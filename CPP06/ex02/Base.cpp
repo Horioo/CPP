@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:45:03 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/07 12:57:05 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:46:47 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,14 @@ void identify(Base& p){
 	} catch (std::exception& e) {}
 
 	try{
-		B& test = dynamic_cast<B&>(p);
+		(void)dynamic_cast<B&>(p);
 		std::cout << " 'B' Type Object" << std::endl;
-		(void)test;
 		return ;
 	} catch (std::exception& e) {}
 
 	try{
-		C& test = dynamic_cast<C&>(p);
+		(void)dynamic_cast<C&>(p);
 		std::cout << " 'C' Type Object" << std::endl;
-		(void)test;
 		return ;
 	} catch (std::exception& e) {}
 }
