@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:48:10 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/21 12:34:07 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:43:53 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,25 @@ void Span::addNumber(int n){
 int Span::shortestSpan(){
 	
 	//Check if Deque is empty or if its only 1
-	if(this->deq.size() == 1 || this->deq.size() == 0)
+	if(this->deq.size() < 2)
 		throw std::runtime_error("The Size of the Array has to be 2 or More");
 	
 	//Sort the Deque so we have the lower numbers first and we can find the first Span
 	std::sort(this->deq.begin(), this->deq.end());
 
 	//Find first Span
-	int minSpan = this->deq[1] - this->deq[0];
+	int minSpan = INT_MAX;
 
 	//Iterate threw the Deque and check if any of the new Spans is smaller than the minSpan
-	for(size_t i = 1; i < this->deq.size() - 1; i++){
+	for(size_t i = 0; i < this->deq.size() - 1; i++){
 		int difference = this->deq[i + 1] - this->deq[i];
-		if(difference < minSpan)
+		if(difference > 0 && difference < minSpan )
 			minSpan = difference;
 	}
 
 	//Check if minSpan is equal to 0 if so throw exception
-	if(minSpan == 0)
-		throw std::runtime_error("No Span Detected");
-	
+	if(minSpan == INT_MAX)
+		throw std::runtime_error("No Span Detected2");
 	return minSpan;
 }
 
@@ -87,13 +86,15 @@ int Span::longestSpan(){
 }
 
 void	Span::addManyNumbers(){
+	std::srand(std::time(0));
 	for(size_t i = 0; i < this->N; i++){
-		//Fazer Random Generator de 0 a N e inserir no lugar do 40
-		this->deq.insert(this->deq.end(), 10, 40);
+		int number = std::rand() % INT_MAX;
+		this->deq.insert(this->deq.end(), number);
 	}
 }
 
 void Span::display(){
 	for (std::deque<int>::iterator it = this->deq.begin(); it != deq.end(); ++it)
 		std::cout << *it << " ";
+	std::cout << std::endl;
 }

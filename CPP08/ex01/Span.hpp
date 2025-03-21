@@ -4,6 +4,8 @@
 #include <iostream>
 #include <deque>
 #include <algorithm>
+#include <ctime>
+#include <climits>
 
 
 class Span{
