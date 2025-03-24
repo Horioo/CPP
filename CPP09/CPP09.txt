@@ -1,0 +1,9 @@
+ex00 - vector:
+	- 
+
+ex01 - deque:
+	-
+
+ex02 - List e Map:
+	-
+	
