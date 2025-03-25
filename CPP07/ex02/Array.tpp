@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:45:10 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/07 16:20:40 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:45:22 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ Array<T>::~Array(){
 template <typename T>
 Array<T>::Array(const Array &other){ 
 	std::cout << "Array Constructor with Other Array" << std::endl;
-	if(other.len == 0)
-	{
+	if(other.len == 0){
 		this->array = NULL;
 		this->len = 0;
 	}
@@ -51,11 +50,13 @@ Array<T>::Array(const Array &other){
 
 template <typename T>
 Array<T> &Array<T>::operator=(const Array &copy){
-	std::cout << "Array Constructor with Copy" << std::endl;
+	std::cout << "Array Copy Operator" << std::endl;
 	if(this != &copy)
 	{
-		if(copy.len == 0)
+		if(copy.len == 0){
 			this->array = NULL;
+			this->len = 0;
+		}
 		else
 		{
 			this->array = new T[copy.len]();

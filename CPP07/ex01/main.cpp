@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:15:58 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/07 14:29:24 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:41:32 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int main(){
 	double arr3[] = {1.2, 3.5, 85.2, 39.4, 0.1};
 
 	std::cout << "Display Arr1" << std::endl;
-	iter(arr1, 5, display);
+	iter(arr1, sizeof(arr1) / sizeof(arr1[0]), display);
 
 	std::cout << "Display Arr2" << std::endl;
-	iter(arr2, 5, display);
+	iter(arr2, sizeof(arr2) / sizeof(arr2[0]), display);
 
 	std::cout << "Display Arr3" << std::endl;
-	iter(arr3, 5, display);
+	iter(arr3, sizeof(arr3) / sizeof(arr3[0]), display);
 	
 }
