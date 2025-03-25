@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <deque>
+#include <algorithm>
+#include <ctime>
+#include <climits>
 
 
 class Span{
@@ -17,10 +20,11 @@ class Span{
 	Span(const Span &other);
 	Span &operator=(const Span &copy);
 
-	void addNumber();
-	unsigned int shortestSpan();
-	unsigned int longestSpan();
+	void addNumber(int n);
+	int shortestSpan();
+	int longestSpan();
 	void addManyNumbers();
+	void display();
 };
 
 

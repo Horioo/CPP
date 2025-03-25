@@ -1,4 +1,4 @@
-NAME = Span
+NAME = btc
 
 CC = c++ -Wall -Werror -Wextra -std=c++98
 RM = rm -f
@@ -15,10 +15,14 @@ $(NAME):	$(OBJ) $(LIBFT)
 			$(CC) $(OBJ) -o $(NAME)
 			@echo "$(NAME) created"	
 
+clean:
+				@$(RM) $(NAME)
+				@echo "$(NAME) deleted"
+
 fclean:
 				@$(RM) $(NAME)
 				@echo "$(NAME) deleted"
 
 re:			fclean all
 
-.PHONY:			start all fclean re
+.PHONY:			start all fclean clean re
