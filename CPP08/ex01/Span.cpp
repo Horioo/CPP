@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:48:10 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/21 20:43:53 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:38:04 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void Span::addNumber(int n){
 int Span::shortestSpan(){
 	
 	//Check if Deque is empty or if its only 1
-	if(this->deq.size() < 2)
+	if(this->deq.size() < 2 || this->deq.empty())
 		throw std::runtime_error("The Size of the Array has to be 2 or More");
 	
 	//Sort the Deque so we have the lower numbers first and we can find the first Span
@@ -71,7 +71,7 @@ int Span::shortestSpan(){
 int Span::longestSpan(){
 	
 	//Check if Deque is empty or if its only 1
-	if(this->deq.size() == 1 || this->deq.empty())
+	if(this->deq.size() < 2 || this->deq.empty())
 		throw std::runtime_error("The Size of the Array has to be 2 or More");
 	
 	//Find Min and Max value inside Deque

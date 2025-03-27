@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:38:30 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/24 22:59:08 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:39:45 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	//[...]
+	
 	mstack.push(0);
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
@@ -49,7 +49,7 @@ int main()
 	list.push_back(3);
 	list.push_back(5);
 	list.push_back(737);
-	//[...]
+	
 	list.push_back(0);
 	std::list<int>::iterator it2 = list.begin();
 	std::list<int>::iterator ite2 = list.end();
@@ -72,7 +72,7 @@ int main()
 	vec.push_back(3);
 	vec.push_back(5);
 	vec.push_back(737);
-	//[...]
+	
 	vec.push_back(0);
 	std::vector<int>::iterator it3 = vec.begin();
 	std::vector<int>::iterator ite3 = vec.end();
