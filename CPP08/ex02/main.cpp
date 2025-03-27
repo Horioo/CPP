@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:38:30 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/27 11:39:45 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:53:56 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int main()
 	std::list<int> list;
 	list.push_back(5);
 	list.push_back(17);
-	std::cout << list.front() << std::endl;
-	list.pop_front();
+	std::cout << list.back() << std::endl;
+	list.pop_back();
 	std::cout << list.size() << std::endl;
 	list.push_back(3);
 	list.push_back(5);
@@ -66,7 +66,7 @@ int main()
 	std::vector<int> vec;
 	vec.push_back(5);
 	vec.push_back(17);
-	std::cout << vec.front() << std::endl;
+	std::cout << vec.back() << std::endl;
 	vec.pop_back();
 	std::cout << vec.size() << std::endl;
 	vec.push_back(3);
