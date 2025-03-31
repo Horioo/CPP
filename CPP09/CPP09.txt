@@ -1,6 +1,6 @@
-ex00 - vector:
-	- 
-
+ex00 - MultiMap:
+	- Permite agrupar valores e duplicados, como por exemplo 2 valores para a data "2021-01-02"
+	-
 ex01 - deque:
 	-
 

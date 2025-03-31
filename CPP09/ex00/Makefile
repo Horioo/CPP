@@ -3,7 +3,7 @@ NAME = btc
 CC = c++ -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-FILES = main.cpp Span.cpp
+FILES = main.cpp
 
 SRCS = $(FILES)
 
