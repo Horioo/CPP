@@ -3,36 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajorge-p <ajorge-p@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 08:54:09 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/03/31 14:25:22 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:42:11 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-/* Print values on a Map Container
-
-for(std::map<std::string, double>::iterator it = btcData.begin(); it != btcData.end(); ++it){
-			
-	std::cout << "Data: " << it->first << " | Preco " << it->second << std::endl; 
-}
-*/
-
-int verifyValue(double value){
+int verifyValue(double value, std::vector<std::pair<std::string, double> >*inputData){
 	if(value < 0){
-		std::cerr << "Error: not a positive Number" << std::endl;
+		std::string errormsg = "Error: not a positive Number";
+			inputData->push_back(std::make_pair(errormsg, -1));
 		return 0;
 	}
 	if(value > INT_MAX){
-		std::cerr << "Error: too large a number" << std::endl;
+		std::string errormsg = "Error: too large a number";
+			inputData->push_back(std::make_pair(errormsg, -1));
 		return 0;
 	}
 	return 1;
 }
 
-int verifyDate(std::string date){
+int verifyDate(std::string date, std::vector<std::pair<std::string, double> >*inputData){
 
 	size_t start = 0;
 	size_t end = date.find('-');
@@ -57,24 +51,32 @@ int verifyDate(std::string date){
 
 	//2009 baseado no data.csv
 	if(year < 2009 || (month > 12 || month < 1) || (day > 31 || day < 1)){
-		std::cerr << "Error: bad input => " << date << std::endl; 
+		std::string errormsg = "Error: bad input => ";
+		errormsg.append(date);
+			inputData->push_back(std::make_pair(errormsg, -1));
 		return 0;	
 	}
 	switch (month)
 	{
 	case 2:
 		if(year % 4 == 0 && day > 29){
-			std::cerr << "Error : bad input => " << year << "-" << month << "-" << day << std::endl; 
+			std::string errormsg = "Error: bad input => ";
+			errormsg.append(date);
+			inputData->push_back(std::make_pair(errormsg, -1));
 			return 0;
 		}
 		else if(year % 4 != 0 && day > 28){
-			std::cerr << "Error : bad input => " << year << "-" << month << "-" << day << std::endl;
+			std::string errormsg = "Error: bad input => ";
+			errormsg.append(date);
+			inputData->push_back(std::make_pair(errormsg, -1));
 			return 0;
 		}
 		break;
-	case (4, 6, 9, 11):
+	case 4: case 6: case 9: case 11:
 		if(day > 30){
-			std::cerr << "Error : bad input => " << year << "-" << month << "-" << day << std::endl;
+			std::string errormsg = "Error: bad input => ";
+			errormsg.append(date);
+			inputData->push_back(std::make_pair(errormsg, -1));
 			return 0;	
 		}
 		break;
@@ -82,13 +84,13 @@ int verifyDate(std::string date){
 	return 1;
 }
 
-int verifyValueStr(std::string valueStr){
+int verifyValueStr(std::string valueStr, std::vector<std::pair<std::string, double> >*inputData){
 	
 	for (size_t i = 0; i < valueStr.length(); ++i) {
         char c = valueStr[i];
-		//std::cout << "C = " << c << std::endl;
         if (!((c >= '0' && c <= '9') || c == '.' || c == ' ')) {
-			std::cerr << "Error: Can't use Characters" << std::endl;
+			std::string errormsg = "Error: Can't use Characters";
+			inputData->push_back(std::make_pair(errormsg, -1));
             return false;
         }
     }
@@ -105,8 +107,8 @@ std::string trim(const std::string& str) {
     return str.substr(start, end - start + 1);
 }
 
-std::multimap<std::string, double> getDataCSV(const char *fileToOpen){
-	std::multimap<std::string, double>btcData;
+std::vector<std::pair<std::string, double> > getDataCSV(const char *fileToOpen){
+	std::vector<std::pair<std::string, double> >btcData;
 	std::ifstream file(fileToOpen);
 
 	if(!file.is_open()){
@@ -123,15 +125,15 @@ std::multimap<std::string, double> getDataCSV(const char *fileToOpen){
 			
 		if(std::getline(ss, date, ',') && std::getline(ss, valueStr)){
 			value = atof(valueStr.c_str());
-			btcData.insert(std::make_pair(date, value));
+			btcData.push_back(std::make_pair(date, value));
 		}
 	}
 	file.close();
 	return btcData;
 }
 
-std::multimap<std::string, double> getDataTXT(const char *fileToOpen){
-	std::multimap<std::string, double>btcData;
+std::vector<std::pair<std::string, double> > getDataTXT(const char *fileToOpen){
+	std::vector<std::pair<std::string, double> >inputData;
 	std::ifstream file(fileToOpen);
 
 	if(!file.is_open()){
@@ -149,44 +151,69 @@ std::multimap<std::string, double> getDataTXT(const char *fileToOpen){
 		if(std::getline(ss, date, '|') && std::getline(ss, valueStr)){
 			value = atof(valueStr.c_str());
 
-			if(verifyValue(value) && verifyDate(date) && verifyValueStr(valueStr)){
-				btcData.insert(std::make_pair(trim(date), value));
-				std::cout << date << " => " << value << " = " << "value to do" << std::endl; 
+			if(verifyValue(value, &inputData) && verifyDate(date, &inputData) && verifyValueStr(valueStr, &inputData)){
+				inputData.push_back(std::make_pair(trim(date), value));
 			}
 		}
-		else
-			std::cerr << "Error: bad input => " << line << std::endl;
+		else{
+			std::string errormsg = "Error: bad input => ";
+			errormsg.append(line);
+			inputData.push_back(std::make_pair(errormsg, -1));
+		}
 	}
 	file.close();
-	return btcData;
+	return inputData;
 }
 
-void display(std::multimap<std::string, double>d){
-	for(std::map<std::string, double>::iterator it = d.begin(); it != d.end(); ++it){	
-		std::cout << "Data: " << it->first << " | Preco " << it->second << std::endl; 
+void display(std::vector<std::pair<std::string, double> >d){
+	for(std::vector<std::pair<std::string, double> >::iterator it = d.begin(); it != d.end(); ++it){	
+		std::cout << "Date: " << it->first << " | Value " << it->second << std::endl; 
 	}
 }
 
+struct CompareDates {
+    bool operator()(const std::pair<std::string, double>& entry, const std::string& date) const {
+        return entry.first < date;
+    }
+};
 
 int main(int ac, char **av){
 	if(ac == 2){
 		int foundFlag = 0;
-		std::multimap<std::string, double>btcData = getDataCSV("data.csv");
-		std::multimap<std::string, double>inputData = getDataTXT(av[1]);
+		std::vector<std::pair<std::string, double> >btcData = getDataCSV("data.csv");
+		std::vector<std::pair<std::string, double> >inputData = getDataTXT(av[1]);
 
-		for(std::multimap<std::string, double>::iterator it = inputData.begin(); it != inputData.end(); it++){
+
+		for(std::vector<std::pair<std::string, double> >::iterator itInput = inputData.begin(); itInput != inputData.end(); itInput++){
 			foundFlag = 0;
-			for(std::multimap<std::string, double>::iterator it2 = btcData.begin(); it2 != btcData.end(); it2++){
-				if(it2->first == it->first){
-					foundFlag = 1;
-					std::cout << it->first << " => " << it->second << " = " << it->second * it2->second << std::endl;
+			
+			if(itInput->second == -1)
+					std::cerr << itInput->first << std::endl;
+			else
+			{	
+				std::vector<std::pair<std::string, double> >::iterator itBTC;
+				for( itBTC = btcData.begin(); itBTC != btcData.end(); itBTC++){
+					if(itBTC->first == itInput->first){
+						foundFlag = 1;
+						std::cout << itInput->first << " => " << itInput->second << " = " << itInput->second * itBTC->second << std::endl;
+						break;
+					}
+				}
+				if(foundFlag == 0){
+					
+					itBTC = std::lower_bound(btcData.begin(), btcData.end(), *itInput);
+					
+					//If the value returned is not equal to the BTC Date we go one back so we find the closest date
+					if(itBTC != btcData.begin() && (itBTC == btcData.end() || itBTC->first != itInput->first))
+						--itBTC;
+					//After that we do the calculation with the correct Date
+					if(itBTC != btcData.end() && itBTC->first <= itInput->first)
+						std::cout << itInput->first << " => " << itInput->second << " = " << itInput->second * itBTC->second << std::endl;
+					else
+						std::cout << "No Valid Date for " << itInput->first << std::endl;
 				}
 			}
-			if(foundFlag == 0){
-				//Fazer caso nao tenha encontrado no ciclo em cima, deve procurar pela data mais perto arredondado a baixo
-			}
 		}
-		
 	}
 	else 
 		std::cout << "Invalid number of files: \nFormat: ./btc FileWithValuesToEvaluate " << std::endl;
