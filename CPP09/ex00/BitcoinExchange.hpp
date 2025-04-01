@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <limits.h>
 #include <ctime>
+#include <vector>
 
 
 
