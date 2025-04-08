@@ -2,8 +2,8 @@ ex00 - Vector com Pair:
 	- Permite agrupar valores e duplicados, como por exemplo 2 valores para a data "2021-01-02"
 	- Permite manter a ordem em que inserimos os valores ao contrario do multimap que arranja depois todos baseado na ordem especifica
 
-ex01 - deque:
-	- 
+ex01 - stack:
+	- Facil de usar e quando procuramos por RPN falam sempre de Stack devido ao conceito de last in / first out
 
 ex02 - List e Map:
 	-
