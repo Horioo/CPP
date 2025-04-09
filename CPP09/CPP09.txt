@@ -4,7 +4,17 @@ ex00 - Vector com Pair:
 
 ex01 - stack:
 	- Facil de usar e quando procuramos por RPN falam sempre de Stack devido ao conceito de last in / first out
+	Testes: 
+		"9 3 2 * + 4 5 6 * + *"
+		"9 9 9 * * 9 9 * +"
+		"3 4 + 2 5 +"
+		"3 4 + 2 5 * +"
+		"9 2 3 + 4 * + 5 6 + 7 8 + + * 2 2 + 3 * + 9 1 - * 3 3 * + 6 /"
+		"3 4 + 2 2 - /" - Divisao por 0 - ERRO
 
-ex02 - List e Map:
-	-
+ex02 - List e deque:
+	 - A Lista permite insercoes com um tempo bastante rapido quando são muitos argumentos devido a ser insercoes usando pointers
+	 - enquanto que o deque demora muito mais tempo devido a ter de mover os elementos todos para a direita quando estamos a inserir no meio do deque
+	 - a Lista nao permite acessos diretos com o [] enquanto que o deque permite (usamos iteradores para a lista)
+	 
 	
