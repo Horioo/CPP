@@ -6,11 +6,19 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:45:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/04/09 18:19:45 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:39:37 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+bool isInvalidChar(char c) {
+    return !std::isdigit(c) && c != ' ';
+}
+
+bool hasInvalidChars(const std::string& str) {
+    return std::find_if(str.begin(), str.end(), isInvalidChar) != str.end();
+}
 
 PmergeMe::PmergeMe(char **av){
 	std::cout << "PmergeMe Default Constructor" << std::endl;
@@ -18,6 +26,8 @@ PmergeMe::PmergeMe(char **av){
 	//Code
 	for(size_t i = 1; av[i]; i++)
 	{
+		if(hasInvalidChars(av[i]))
+			throw std::runtime_error("Error");
 		int value = std::atoi(av[i]);
 		if(value < 0)
 			throw std::runtime_error("Error");
