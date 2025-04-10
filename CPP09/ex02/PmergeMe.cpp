@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:45:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/04/09 18:39:37 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/10 18:32:22 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,168 +82,187 @@ void PmergeMe::print_list(){
 /*********			DEQUE		****************/
 /***********************************************/
 
-std::deque<int> insertSort(std::deque<int> &dq)
-{
-	for(size_t i = 1; i < dq.size(); ++i)
+std::deque<int> generateJacobsthal(int maxVal){
+	std::deque<int> seq;
+	seq.push_back(0);
+	seq.push_back(1);
+
+	while(1)
 	{
-		int check = dq[i];
-		size_t j = i - 1;
-		while(j >= 0 && dq[j] > check)
-		{
-			dq[j + 1] = dq[j];
-			if(j == 0)
-			{
-				--j;
-				break;
-			}
-			--j;
-		}
-		dq[j + 1] = check;
+		int prox = seq[seq.size() - 1] + 2 * seq[seq.size() - 2];
+		if(prox > maxVal)
+			break;
+		seq.push_back(prox);	
 	}
-	return dq;
+	return seq;
 }
 
-std::deque<int> merge(const std::deque<int> &left,const std::deque<int> &right)
-{
-	std::deque<int> result;
-	size_t i = 0, j = 0;
+void insertBinary(std::deque<int> &dq, int value){
+	std::deque<int>::iterator it = std::lower_bound(dq.begin(), dq.end(), value);
+	dq.insert(it, value);
+}
 
-	while(i < left.size() && j < right.size())
-	{
-		if(left[i] < right[j])
+std::deque<int> PmergeMe::fordJohnsonSort(const std::deque<int> &dq){
+	size_t n = dq.size();
+	if(n < 1)
+		return dq;
+
+	std::deque<int> bigger, smaller;
+
+	for(size_t i = 0; i + 1 < n; i += 2){
+		if(dq[i] < dq[i + 1])
 		{
-			result.push_back(left[i]);
-			i++;
+			smaller.push_back(dq[i]);
+			bigger.push_back(dq[i + 1]);	
 		}
 		else
 		{
-			result.push_back(right[j]);
-			j++;
+			smaller.push_back(dq[i + 1]);
+			bigger.push_back(dq[i]);		
 		}
 	}
 
-	while(i < left.size())
+	if(n % 2 != 0)
+		smaller.push_back(dq[n - 1]);
+
+	std::deque<int> order_deq = fordJohnsonSort(bigger);
+	std::deque<int> result;
+
+	if(!bigger.empty())
+		result.push_back(order_deq[0]);
+	if(!smaller.empty())
+		insertBinary(result, smaller[0]);
+
+	for(size_t i = 1; i < order_deq.size(); ++i)
+		insertBinary(result, order_deq[i]);
+
+	std::deque<int> insertionOrder= generateJacobsthal(smaller.size() - 1);
+	std::deque<bool> inserted(smaller.size(), false);
+	inserted[0] = true;
+
+	for(size_t i = 0; i < insertionOrder.size(); ++i)
 	{
-		result.push_back(left[i]);
-		i++;
-	}
-	
-	while(j < right.size())
-	{
-		result.push_back(right[j]);
-		j++;
+		unsigned int idx = insertionOrder[i];
+		if(idx < smaller.size() && !inserted[idx])
+		{
+			insertBinary(result, smaller[idx]);
+			inserted[idx] = true;	
+		}
 	}
 
+	for(size_t i = 0; i < smaller.size(); ++i)
+	{
+		if(!inserted[i])
+			insertBinary(result, smaller[i]);
+	}
 	return result;
-}
-
-void PmergeMe::mergeInsertDeque(std::deque<int> &dq)
-{
-	if(dq.size() <= 1)
-		return ;
-
-	size_t mid = dq.size() / 2;
-
-	std::deque<int> left(dq.begin(), dq.begin() + mid);
-	std::deque<int> right(dq.begin() + mid, dq.end());
-
-	left = insertSort(left);
-	right = insertSort(right);
-
-	dq = merge(left, right);
 }
 
 /***********************************************/
 /*********			LIST		****************/
 /***********************************************/
 
-std::list<int> merge(const std::list<int> &left, const std::list<int> &right)
-{
-	std::list<int> result;
-	std::list<int>::const_iterator itL = left.begin();
-	std::list<int>::const_iterator itR = right.begin();
+std::list<int> lst_generateJacobsthal(int maxVal){
+    std::list<int> seq;
+    seq.push_back(0);
+    seq.push_back(1);
 
-	while(itL != left.end() && itR != right.end())
+    std::list<int>::iterator it1 = seq.begin();
+    std::list<int>::iterator it2 = ++seq.begin();
+
+    while(1)
+    {
+        int prox = *it2 + 2 * *it1;
+        if(prox > maxVal)
+            break;
+        seq.push_back(prox);
+        it1 = seq.end();
+		--it1;
+		--it1;
+        it2 = seq.end();
+		--it2;
+    }
+    return seq;
+}
+
+void insertBinary(std::list<int> &lst, int value)
+{
+	std::list<int>::iterator it = std::lower_bound(lst.begin(), lst.end(), value);
+    lst.insert(it, value);
+}
+
+std::list<int> PmergeMe::fordJohnsonSort(const std::list<int> &lst)
+{
+	size_t n = lst.size();
+	if(n < 1)
+		return lst;
+
+	std::list<int> bigger, smaller;
+
+	std::list<int>::const_iterator it = lst.begin();
+
+	for(size_t i = 0; i + 1 < n; i +=2, std::advance(it, 2))
 	{
-		if(*itL < *itR)
+		std::list<int>::const_iterator next_it = ++it;
+		--it;
+		if(*it < *next_it)
 		{
-			result.push_back(*itL);
-			++itL;
+			smaller.push_back(*it);
+			bigger.push_back(*next_it);
 		}
 		else
 		{
-			result.push_back(*itR);
-			++itR;
+			bigger.push_back(*it);
+			smaller.push_back(*next_it);
 		}
 	}
 
-	while(itL != left.end())
-	{
-		result.push_back(*itL);
-		itL++;
-	}
+	if(n % 2 != 0)
+		smaller.push_back(*it);
+
+	std::list<int> order_lst = fordJohnsonSort(bigger);
+	std::list<int> result;
+
+	if(!bigger.empty())
+		result.push_back(order_lst.front());
+	if(!smaller.empty())
+		insertBinary(result, smaller.front());
 	
-	while(itR != right.end())
+	std::list<int>::const_iterator order_it = ++order_lst.begin();
+	for(; order_it != order_lst.end(); ++order_it)
+		insertBinary(result, *order_it);
+
+	std::list<int> insertionOrder = lst_generateJacobsthal(smaller.size() - 1);
+	std::deque<bool> inserted(smaller.size(), false);
+	inserted.front() = true;
+
+	std::list<int>::iterator order_idx_it = insertionOrder.begin();
+	for(; order_idx_it != insertionOrder.end(); ++order_idx_it)
 	{
-		result.push_back(*itR);
-		++itR;
+		unsigned int idx = *order_idx_it;
+		if(idx < smaller.size() && !inserted[idx])
+		{
+			std::list<int>::iterator sm_it = smaller.begin();
+			std::advance(sm_it, idx);
+			insertBinary(result, *sm_it);
+			inserted[idx] = true;
+		}
 	}
 
+	std::list<int>::iterator sm_it = smaller.begin();
+	for(size_t i = 0; i < smaller.size(); ++i, ++sm_it)
+	{
+		if(!inserted[i])
+			insertBinary(result, *sm_it);
+	}
 	return result;
-}
-
-std::list<int> insertSort(std::list<int>lst){
 	
-	if(lst.size() < 2)
-		return lst;
-	
-	std::list<int>::iterator it = lst.begin();
-	++it;
-
-	for(; it != lst.end(); ++it)
-	{
-		int check = *it;
-		std::list<int>::iterator j = it;
-		--j;
-		
-		while(j != lst.begin() && *j > check)
-			--j;
-		
-		if(*j > check  && j == lst.begin())
-		{
-			lst.insert(j, check);
-			lst.erase(it++);
-		} 
-		else 
-		{
-			std::list<int>::iterator nextIt = it;
-			++nextIt;
-			lst.insert(++j, check);
-			lst.erase(it);
-			it = nextIt;
-		}
-	}
-	return lst;
 }
 
-void PmergeMe::mergeInsertList(std::list<int> &lst){
-	if(lst.size() <= 1)
-		return ;
-		
-	std::list<int> left, right;
-	std::list<int>::iterator it = lst.begin();
-	size_t mid = lst.size() / 2;
+/***********************************************/
+/*************	  Main Function		************/
+/***********************************************/
 
-	for(size_t i = 0; i < mid; ++i, it++)
-		left.push_back(*it);
-	for(; it != lst.end(); ++it)
-		right.push_back(*it);
-
-	left = insertSort(left);
-	right = insertSort(right);
-
-	lst = merge(left, right);
-}
 
 void PmergeMe::merge_insert()
 {
@@ -254,19 +273,20 @@ void PmergeMe::merge_insert()
 	this->print_deque(this->_deque);
 	
 	gettimeofday(&start, NULL);
-	this->mergeInsertDeque(this->_deque);
+	this->_deque_result = fordJohnsonSort(this->_deque);
 	gettimeofday(&end, NULL);
 	
 	std::cout << "After: ";
-	this->print_deque(this->_deque);
+	this->print_deque(this->_deque_result);
 	
 	long seconds = end.tv_sec - start.tv_sec;
 	long microseconds = end.tv_usec - start.tv_usec;
 	long totalMicroseconds = seconds * 1000000 + microseconds;
 	std::cout << "Time to process a range of " << this->_deque.size() << " elements with std::deque : " << totalMicroseconds << " μs" << std::endl;
 
+	
 	gettimeofday(&start, NULL);
-	this->mergeInsertList(this->_list);
+	this->_list_result = fordJohnsonSort(this->_list);
 	gettimeofday(&end, NULL);
 	
 	seconds = end.tv_sec - start.tv_sec;
