@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:45:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/04/10 18:32:22 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:11:35 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ std::deque<int> PmergeMe::fordJohnsonSort(const std::deque<int> &dq){
 	for(size_t i = 1; i < order_deq.size(); ++i)
 		insertBinary(result, order_deq[i]);
 
-	std::deque<int> insertionOrder= generateJacobsthal(smaller.size() - 1);
+	std::deque<int> insertionOrder = generateJacobsthal(smaller.size() - 1);
 	std::deque<bool> inserted(smaller.size(), false);
 	inserted[0] = true;
 
@@ -146,7 +146,7 @@ std::deque<int> PmergeMe::fordJohnsonSort(const std::deque<int> &dq){
 		if(idx < smaller.size() && !inserted[idx])
 		{
 			insertBinary(result, smaller[idx]);
-			inserted[idx] = true;	
+			inserted[idx] = true;
 		}
 	}
 
@@ -284,11 +284,10 @@ void PmergeMe::merge_insert()
 	long totalMicroseconds = seconds * 1000000 + microseconds;
 	std::cout << "Time to process a range of " << this->_deque.size() << " elements with std::deque : " << totalMicroseconds << " μs" << std::endl;
 
-	
 	gettimeofday(&start, NULL);
 	this->_list_result = fordJohnsonSort(this->_list);
 	gettimeofday(&end, NULL);
-	
+
 	seconds = end.tv_sec - start.tv_sec;
 	microseconds = end.tv_usec - start.tv_usec;
 	totalMicroseconds = seconds * 1000000 + microseconds;
