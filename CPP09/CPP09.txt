@@ -15,6 +15,45 @@ ex01 - stack:
 ex02 - List e deque:
 	 - A Lista permite insercoes com um tempo bastante rapido quando são muitos argumentos devido a ser insercoes usando pointers
 	 - enquanto que o deque demora muito mais tempo devido a ter de mover os elementos todos para a direita quando estamos a inserir no meio do deque
-	 - a Lista nao permite acessos diretos com o [] enquanto que o deque permite (usamos iteradores para a lista)
+
+	 -O problema é que a lista nao permite acesso direto atraves do "[]" enquanto que o deque permite, o que faz com que o deque seja mais rapido para valores maiores
 	 
-	
+
+lowerbound(begin, end, value) :
+	Encontra o primeiro elemento que não é menor do que o value
+
+
+
+ex02: Jacobsthal:
+
+smaller = [17, 3, 42, 25, 8, 39, 11, 50, 2, 29, 20];
+
+jacobSthal = [0,1,1,3,5];
+
+for(i = 2, 2 < 11, i++)
+	if(!inserted[2] / !false / true)
+		insertBinary([1,3,4,25,39], smaller[2] = 42)
+		result = [1,3,4,25,39,42]
+/* ----------------------------------------------------- */
+
+for(i = 3, 3 < 11, i++)
+	if(!inserted[3] / !true, false)
+		//skip
+/* ----------------------------------------------------- */
+
+for(i = 4, 4 < 11, i++)
+	if(!inserted[4] / !false, true)
+		insertedBinary([1,3,4,25,39,42], smaller[4] = 8)
+		result = [1,3,4,8,25,39,42]
+/* ----------------------------------------------------- */
+
+for(i = 5, 5 < 11, i++)
+	if(!inserted[5] / !true, false)
+		//skip
+/* ----------------------------------------------------- */
+
+for(i = 6..., 6 < 11, i++)
+	if(!inserted[6] / !false, true)
+		insertedBinary([1,3,4,25,39,42], smaller[6] = 11)
+		result = [1,3,4,11,25,39,42]
+/* ----------------------------------------------------- */
