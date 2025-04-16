@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:45:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/04/16 12:04:18 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:23:22 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ PmergeMe::~PmergeMe(){
 PmergeMe::PmergeMe(const PmergeMe &other){
 	std::cout << "PmergeMe Copy Constructor" << std::endl;
 	this->_deque = other._deque;
+	this->_deque_result = other._deque_result;
 	this->_list = other._list;
+	this->_list_result = other._list_result;
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &copy){
@@ -57,7 +59,9 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &copy){
 	if(this != &copy)
 	{
 		this->_deque = copy._deque;
+		this->_deque_result = copy._deque_result;
 		this->_list = copy._list;
+		this->_list_result = copy._list_result;
 	}
 	return *this;
 }
