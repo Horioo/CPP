@@ -6,7 +6,7 @@
 /*   By: ajorge-p <ajorge-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:45:41 by ajorge-p          #+#    #+#             */
-/*   Updated: 2025/04/15 15:53:56 by ajorge-p         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:04:18 by ajorge-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ PmergeMe::PmergeMe(char **av){
 		if((std::find(this->_deque.begin(),this->_deque.end(), value) == this->_deque.end()))
 			this->_deque.push_back(value);
 		else
-			std::cout << "\033[1;31mDuplicate Detected: Action: Ignored\033[0m" << std::endl;
+			std::cout << "\033[1;31mDuplicate Detected:\nAction: Ignored\033[0m" << std::endl;
 		if((std::find(this->_list.begin(),this->_list.end(), value) == this->_list.end()))
 			this->_list.push_back(value);
 		else
-			std::cout << "\033[1;31mDuplicate Detected: Action: Ignored\033[0m" << std::endl;
+			std::cout << "\033[1;31mDuplicate Detected:\nAction: Ignored\033[0m" << std::endl;
 	}
 }
 
@@ -264,20 +264,23 @@ std::list<int> PmergeMe::fordJohnsonSort(const std::list<int> &lst)
 /***********************************************/
 
 
-void PmergeMe::merge_insert()
+void PmergeMe::display()
 {
 	struct timeval start, end;
-	
 		
 	std::cout << "Before: ";
+	std::cout << "\033[1;31m";
 	this->print_deque(this->_deque);
+	std::cout << "\033[0m";
 	
 	gettimeofday(&start, NULL);
 	this->_deque_result = fordJohnsonSort(this->_deque);
 	gettimeofday(&end, NULL);
 	
 	std::cout << "After: ";
+	std::cout << "\033[1;32m";
 	this->print_deque(this->_deque_result);
+	std::cout << "\033[0m";
 	
 	long seconds = end.tv_sec - start.tv_sec;
 	long microseconds = end.tv_usec - start.tv_usec;
@@ -291,5 +294,5 @@ void PmergeMe::merge_insert()
 	seconds = end.tv_sec - start.tv_sec;
 	microseconds = end.tv_usec - start.tv_usec;
 	totalMicroseconds = seconds * 1000000 + microseconds;
-	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list : " << totalMicroseconds << " μs" << std::endl;
+	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list  : " << totalMicroseconds << " μs" << std::endl;
 }

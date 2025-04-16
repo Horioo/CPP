@@ -24,11 +24,9 @@ class PmergeMe {
 	PmergeMe(const PmergeMe &other);
 	PmergeMe &operator=(const PmergeMe &copy);
 
-	void merge_insert();
+	void display();
 	std::deque<int> fordJohnsonSort(const std::deque<int> &dq);
 	std::list<int> fordJohnsonSort(const std::list<int> &lst);
-	//void mergeInsertDeque(std::deque<int> &dq);
-	void mergeInsertList(std::list<int> &lst);
 	void print_deque(std::deque<int> &dq);
 	void print_list();
 };
